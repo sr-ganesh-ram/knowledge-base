@@ -14,6 +14,11 @@ const config = {
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
+  markdown: {
+    mermaid: true,    
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   // Set the production url of your site here
   url: 'https://sr-ganesh-ram.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -36,14 +41,47 @@ const config = {
     locales: ['en'],
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-pwa',
+      {
+        debug: true,
+        offlineModeActivationStrategies: [
+          'appInstalled',
+          'standalone',
+          'queryString',
+        ],
+        pwaHead: [
+          {
+            tagName: 'link',
+            rel: 'icon',
+            href: '/img/docusaurus.png',
+          },
+          {
+            tagName: 'link',
+            rel: 'manifest',
+            href: '/manifest.json', // your PWA manifest
+          },
+          {
+            tagName: 'meta',
+            name: 'theme-color',
+            content: 'rgb(37, 194, 160)',
+          },
+        ],
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        
+
         docs: {
           sidebarPath: './sidebars.js',
-          remarkPlugins: [require('remark-mermaid')],
+          //remarkPlugins: [require('remark-mermaid')],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -147,12 +185,11 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-      mermaid: {
+      /*mermaid: {
         // You can optionally customize Mermaid's settings here
         theme: 'default',
-      },
+      },*/
     }),
-
  
 };
 
